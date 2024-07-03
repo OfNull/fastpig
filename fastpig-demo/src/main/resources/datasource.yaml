@@ -3,6 +3,6 @@ datasources:
     name: 'metadata'
     driverName: com.mysql.jdbc.Driver
     url: 'jdbc:mysql://mysql.sqlpub.com:3306/fastpig?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&serverTimezone=Asia/Shanghai&useLocalSessionState=true'
-    username: 'zhoukun'
-    password: 'OPAzy2DhyEyr5OoY'
+    username: 'username'
+    password: 'password'
 

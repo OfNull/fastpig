@@ -14,21 +14,21 @@ job:
     delay: 10
 
 source1: &source1
-  servers: saas-cdp.ckafka.internal.weimobqa.com:9092
-  group: ncdp_dwdusermembershipbos_consumptionxx
-  topic: ncdp-tb-membership-binlog
+  servers: xxxxx
+  group: test-binlog-group
+  topic: test-binlog
   type: kafkaSource
   uid: source1
   name: source1
   map:
     security.protocol: SASL_PLAINTEXT
     sasl.mechanism: PLAIN
-    sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username="ckafka-bb7j2ww4#saas-cdp-qa" password="saas41cdp.8qa.2";
+    sasl.jaas.config: //
 
 kafkaConfig:
   consumer:
     properties:
-      servers: saas-cdp.ckafka.internal.weimobqa.com:9092
+      servers: xxxxx:9092
       enable.auto.commit: true
       auto.commit.interval.ms: 5000
       auto.offset.reset: latest
@@ -37,10 +37,10 @@ kafkaConfig:
       flink.partition-discovery.interval-millis: 60000
       security.protocol: SASL_PLAINTEXT
       sasl.mechanism: PLAIN
-      sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username="ckafka-bb7j2ww4#saas-cdp-qa" password="saas41cdp.8qa.2";
+      sasl.jaas.config: //
   producer:
     properties:
-      bootstrap.servers: saas-ncdp.ckafka.internal.weimob.com:9092
+      bootstrap.servers: xxx:9092
       max.request.size: 20971520
       linger.ms: 5
       batch.size: 1310720
@@ -54,8 +54,7 @@ kafkaConfig:
       transaction.timeout.ms: 600000
       security.protocol: SASL_PLAINTEXT
       sasl.mechanism: PLAIN
-      sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username="ckafka-y9a428jn#saas-ncdp-online" password="arYnZKDdyLf5N1O9";
-
+      sasl.jaas.config: //
 
 #source2: &source2
 #  url: 127.0.0.2
