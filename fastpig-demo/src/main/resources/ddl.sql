@@ -91,5 +91,5 @@ CREATE TABLE `meta_job_process` (
                                     `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
                                     PRIMARY KEY (`id`),
                                     KEY `process_FK` (`job_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=8180202 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='flink任务清洗规则配置表';
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='flink任务清洗规则配置表';
 
