@@ -1,0 +1,5 @@
+com\ofnull\fastpig\connector\elasticsearch\Test.class
+com\ofnull\fastpig\connector\elasticsearch\bulkloader\ElasticsearchConfig.class
+com\ofnull\fastpig\connector\elasticsearch\bulkloader\ElasticsearchBulkLoader$1.class
+com\ofnull\fastpig\connector\elasticsearch\bulkloader\ElasticsearchBulkLoader$EsRequestWrap.class
+com\ofnull\fastpig\connector\elasticsearch\bulkloader\ElasticsearchBulkLoader.class

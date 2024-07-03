@@ -1,0 +1,68 @@
+job:
+  name: KafkaToKafkaJob
+  parallelism: 2
+  enableLocalWeb: false
+  checkpoint:
+    enable: true
+    time: 1000
+    interval: 1000
+    timeout: 10000
+    cleanup: RETAIN_ON_CANCELLATION
+    concurrent: 1
+  restart:
+    strategy: fixed-delay
+    attempts: 3
+    delay: 10
+
+dataGrouping:
+  keys:
+    - name
+  jsonPathSupported: false
+
+
+source1: &source1
+  topic: zk-test
+  type: kafkaSource
+  startupMode: EARLIEST
+  format: json
+  uid: source1
+  name: source1
+  properties:
+    <<: *kafkaConsumerProp
+    group.id: zk-test-group
+
+dataProduct:
+  type: kafkaSink
+  topic: zk-test-2
+  format: json
+  partitioner: default
+  formatOptions:
+    jsonPathSupport: true
+    keyField: $.bosId
+  properties:
+    <<: *kafkaProducerProp
+
+metaInfo:
+  <<: *metadata
+
+tableInfo:
+  catalog: cdp-es
+  schema: _doc
+  table: ncdp_dim_channel_list_bos
+dbWrite:
+  parallelism: 2
+  maxBatchSize: 1000
+  maxBlockTime: 10000
+  batchTimeout: 60000
+  flushOnSnapshot: true
+#source2: &source2
+#  url: 127.0.0.2
+#  prot: 9090
+
+sources:
+  -
+    <<: *source1
+#  -
+#    <<: *source2
+
+

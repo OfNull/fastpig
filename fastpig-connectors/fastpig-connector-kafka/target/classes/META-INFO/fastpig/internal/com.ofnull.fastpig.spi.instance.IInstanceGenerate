@@ -1,0 +1,2 @@
+kafkaSource=com.ofnull.fastpig.connector.kafka.generate.KafkaSourceGenerate
+kafkaSink=com.ofnull.fastpig.connector.kafka.generate.KafkaSinkGenerate

@@ -1,0 +1,10 @@
+com\ofnull\fastpig\demo\ConfigureRun$1.class
+com\ofnull\fastpig\demo\KafkaSourceSinkRun.class
+com\ofnull\fastpig\demo\KafkaSourceSinkRun$1.class
+com\ofnull\fastpig\demo\ElasticsearchRun.class
+com\ofnull\fastpig\demo\test\Kafka2StoreJobTest.class
+com\ofnull\fastpig\demo\ConfigureRun.class
+com\ofnull\fastpig\demo\SimpleRun$1.class
+com\ofnull\fastpig\demo\JdbcRun.class
+com\ofnull\fastpig\demo\test\KafkaToKafkaJobTest.class
+com\ofnull\fastpig\demo\SimpleRun.class

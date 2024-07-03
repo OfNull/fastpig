@@ -1,0 +1,8 @@
+com\ofnull\fastpig\dyncomp\matchoperate\AviatorMatchOperator.class
+com\ofnull\fastpig\dyncomp\fieldupdater\DefaultFieldUpdater.class
+com\ofnull\fastpig\dyncomp\matchoperate\EmptyMatchOperator.class
+com\ofnull\fastpig\dyncomp\recordprocessor\CamelToUnderScoreProcessor.class
+com\ofnull\fastpig\dyncomp\matchoperate\NotEqualMatchOperator.class
+com\ofnull\fastpig\dyncomp\recordprocessor\CamelToUnderScoreProcessor$Config.class
+com\ofnull\fastpig\dyncomp\matchoperate\NotEmptyMatchOperator.class
+com\ofnull\fastpig\dyncomp\matchoperate\EqualMatchOperator.class

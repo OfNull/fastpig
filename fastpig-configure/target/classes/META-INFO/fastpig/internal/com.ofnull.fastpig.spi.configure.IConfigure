@@ -1,0 +1,3 @@
+local=com.ofnull.fastpig.configure.LocalReadConfigure
+apollo=com.ofnull.fastpig.configure.ApolloConfigure
+nacos=com.ofnull.fastpig.configure.NacosConfigure

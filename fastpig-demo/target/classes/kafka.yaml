@@ -1,0 +1,31 @@
+kafkaConfig:
+  consumer:
+    properties: &kafkaConsumerProp
+      bootstrap.servers: saas-ncdp.ckafka.internal.weimobqa.com:9092
+      enable.auto.commit: true
+      auto.commit.interval.ms: 5000
+      auto.offset.reset: latest
+      request.timeout: 1000
+      session.timeout.ms isolation.level: read_committed
+      flink.partition-discovery.interval-millis: 60000
+      security.protocol: SASL_PLAINTEXT
+      sasl.mechanism: PLAIN
+      sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username="ckafka-zaprz5pe#saas-ncdp-qa" password="YWEzNGRiMmYyZGMz";
+  producer:
+    properties: &kafkaProducerProp
+      bootstrap.servers: saas-ncdp.ckafka.internal.weimobqa.com:9092
+      max.request.size: 20971520
+      linger.ms: 5
+      batch.size: 1310720
+      send.buffer.bytes: 1048576
+      acks: all
+      retries: 10
+      retry.backoff.ms: 100
+      request.timeout.ms: 60000
+      enable.idempotence: true
+      max.in.flight.requests.per.connection: 1
+      transaction.timeout.ms: 600000
+      security.protocol: SASL_PLAINTEXT
+      sasl.mechanism: PLAIN
+      sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username="ckafka-zaprz5pe#saas-ncdp-qa" password="YWEzNGRiMmYyZGMz";
+

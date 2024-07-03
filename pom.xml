@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http:n.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www//mave.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.ofnull</groupId>
+    <artifactId>fastpig</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>fastpig-common</module>
+        <module>fastpig-demo</module>
+        <module>fastpig-spi</module>
+        <module>fastpig-configure</module>
+        <module>fastpig-run</module>
+        <module>fastpig-connectors</module>
+        <module>fastpig-connectors/fastpig-connector-kafka</module>
+        <module>fastpig-blocks</module>
+        <module>fastpig-connectors/fastpig-connector-elasticsearch</module>
+        <module>fastpig-connectors/fastpig-connector-mysql</module>
+        <module>fastpig-dyncomp</module>
+    </modules>
+
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <log4j.version>2.12.1</log4j.version>
+        <flink.version>1.14.3</flink.version>
+        <scala.binary.version>2.12</scala.binary.version>
+        <commons.cli.version>1.3.1</commons.cli.version>
+        <mysql.version>8.0.16</mysql.version>
+        <hibernate.validator.version>6.0.23.Final</hibernate.validator.version>
+        <javax.el.version>3.0.1-b09</javax.el.version>
+        <json.path.version>2.4.0</json.path.version>
+        <hutool.version>5.8.28</hutool.version>
+        <!-- 2.1.2版本以上支持纯净版客户端 -->
+        <nacos.version>2.1.2</nacos.version>
+        <elasticsearch.version>7.5.1</elasticsearch.version>
+        <guava.version>28.2-jre</guava.version>
+        <commons-collections.version>3.2.2</commons-collections.version>
+        <aviator.version>5.3.3</aviator.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-slf4j-impl</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-cli</groupId>
+                <artifactId>commons-cli</artifactId>
+                <version>${commons.cli.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-java</artifactId>
+                <version>${flink.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-streaming-java_${scala.binary.version}</artifactId>
+                <version>${flink.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-connector-kafka_${scala.binary.version}</artifactId>
+                <version>${flink.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-runtime-web_${scala.binary.version}</artifactId>
+                <version>${flink.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-clients_${scala.binary.version}</artifactId>
+                <version>${flink.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.hibernate.validator</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${hibernate.validator.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.glassfish</groupId>
+                <artifactId>javax.el</artifactId>
+                <version>${javax.el.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.jayway.jsonpath</groupId>
+                <artifactId>json-path</artifactId>
+                <version>${json.path.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-http</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.nacos</groupId>
+                <artifactId>nacos-client</artifactId>
+                <version>${nacos.version}</version>
+                <!-- 指定纯净版SDK -->
+                <classifier>pure</classifier>
+            </dependency>
+            <!-- 使用纯净版时必须要引入同版本nacos-api和nacos-common，否则可能出现运行时找不到类的问题 -->
+            <dependency>
+                <groupId>com.alibaba.nacos</groupId>
+                <artifactId>nacos-common</artifactId>
+                <version>${nacos.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.nacos</groupId>
+                <artifactId>nacos-api</artifactId>
+                <version>${nacos.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.elasticsearch.client</groupId>
+                <artifactId>elasticsearch-rest-high-level-client</artifactId>
+                <version>${elasticsearch.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
+                <version>${commons-collections.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.googlecode.aviator</groupId>
+                <artifactId>aviator</artifactId>
+                <version>${aviator.version}</version>
+            </dependency>
+        </dependencies>
+
+    </dependencyManagement>
+
+</project>

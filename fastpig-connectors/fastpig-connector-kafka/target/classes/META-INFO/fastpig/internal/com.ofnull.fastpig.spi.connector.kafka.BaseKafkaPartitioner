@@ -1,0 +1,2 @@
+fixed=com.ofnull.fastpig.connector.kafka.partitioner.KafkaFixedPartitioner
+default=com.ofnull.fastpig.connector.kafka.partitioner.KafkaDefaultPartitioner

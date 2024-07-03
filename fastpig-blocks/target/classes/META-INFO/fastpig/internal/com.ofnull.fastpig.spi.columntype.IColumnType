@@ -1,0 +1,9 @@
+Boolean=com.ofnull.fastpig.blocks.column.type.BooleanColumnType
+Double=com.ofnull.fastpig.blocks.column.type.DoubleColumnType
+Float=com.ofnull.fastpig.blocks.column.type.FloatColumnType
+Integer=com.ofnull.fastpig.blocks.column.type.IntegerColumnType
+List=com.ofnull.fastpig.blocks.column.type.ListColumnType
+Set=com.ofnull.fastpig.blocks.column.type.SetColumnType
+String=com.ofnull.fastpig.blocks.column.type.StringColumnType
+Timestamp=com.ofnull.fastpig.blocks.column.type.TimestampColumnType
+Long=com.ofnull.fastpig.blocks.column.type.LongColumnType
