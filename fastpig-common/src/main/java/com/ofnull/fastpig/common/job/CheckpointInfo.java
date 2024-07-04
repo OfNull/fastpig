@@ -1,6 +1,7 @@
 package com.ofnull.fastpig.common.job;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.flink.streaming.api.CheckpointingMode;
 import org.apache.flink.streaming.api.environment.CheckpointConfig;
 
 import static org.apache.flink.streaming.api.environment.CheckpointConfig.ExternalizedCheckpointCleanup.*;
@@ -12,11 +13,12 @@ import static org.apache.flink.streaming.api.environment.CheckpointConfig.Extern
 public class CheckpointInfo {
     private Boolean enable = true;
 
-    private Long time = 1000L;
+    private Long betweenInterval = 1000L;
     private Long interval = 1000L;
     private Long timeout;
     private CheckpointConfig.ExternalizedCheckpointCleanup cleanup;
     private Integer concurrent = 1;
+    private CheckpointingMode checkpointingMode = CheckpointingMode.EXACTLY_ONCE;
 
     public Boolean getEnable() {
         return enable;
@@ -26,12 +28,12 @@ public class CheckpointInfo {
         this.enable = enable;
     }
 
-    public Long getTime() {
-        return time;
+    public Long getBetweenInterval() {
+        return betweenInterval;
     }
 
-    public void setTime(Long time) {
-        this.time = time;
+    public void setBetweenInterval(Long betweenInterval) {
+        this.betweenInterval = betweenInterval;
     }
 
     public Long getInterval() {
@@ -79,5 +81,13 @@ public class CheckpointInfo {
 
     public void setConcurrent(Integer concurrent) {
         this.concurrent = concurrent;
+    }
+
+    public CheckpointingMode getCheckpointingMode() {
+        return checkpointingMode;
+    }
+
+    public void setCheckpointingMode(CheckpointingMode checkpointingMode) {
+        this.checkpointingMode = checkpointingMode;
     }
 }

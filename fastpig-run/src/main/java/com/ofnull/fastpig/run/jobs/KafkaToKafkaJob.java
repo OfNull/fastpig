@@ -38,6 +38,6 @@ public class KafkaToKafkaJob {
         SingleOutputStreamOperator<Map<String, Object>> defaultRecordProcessedStream = dataStream.keyBy(simpleKeySelector)
                 .process(new DefaultJobRecordProcessor(null, simpleJdbcConn, OPERATOR_DEFAULT)).uid(OPERATOR_DEFAULT).name(OPERATOR_DEFAULT);
         defaultRecordProcessedStream.addSink(dataProduct).uid(DATA_PRODUCT).name(DATA_PRODUCT);
-        jobContext.getEnv().execute(jobContext.getJobInfo().getName());
+        SimpleStartSetUp.executorJob(jobContext.getEnv(), jobContext.getJobInfo().getName());
     }
 }

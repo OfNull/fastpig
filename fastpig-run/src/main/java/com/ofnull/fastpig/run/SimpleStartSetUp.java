@@ -36,7 +36,8 @@ public class SimpleStartSetUp {
 
     public static JobConfiguration entry(String[] args) throws Exception {
         JobConfiguration context = new JobConfiguration();
-        Map<String, Object> cfg = getConfigure(args);
+        CommandLine commandLine = parseArgs(args);
+        Map<String, Object> cfg = getConfigure(commandLine);
         context.setCfgs(cfg);
 
         Map<String, Object> jobCfg = (Map<String, Object>) cfg.get(ConfigurationConstant.JOB);
@@ -44,7 +45,7 @@ public class SimpleStartSetUp {
         JobInfo jobInfo = JsonUtil.objectMapper().readValue(jobCfgJson, JobInfo.class);
         ValidatorUtil.validate(jobInfo);
 
-        StreamExecutionEnvironment env = createStreamExecutionEnvironment(jobInfo);
+        StreamExecutionEnvironment env = createStreamExecutionEnvironment(jobInfo, commandLine);
         configurationEnvironment(env, jobInfo);
         env.getConfig().setGlobalJobParameters(context);
         context.setEnv(env);
@@ -81,15 +82,15 @@ public class SimpleStartSetUp {
         return commandLine;
     }
 
-    public static Map<String, Object> getConfigure(String[] args) throws Exception {
-        CommandLine commandLine = parseArgs(args);
+    public static Map<String, Object> getConfigure(CommandLine commandLine) throws Exception {
         IConfigure configure = ServiceLoaderHelper.loadServices(IConfigure.class, DefaultCli.getOption(commandLine, DefaultCli.type, "local"));
         Map<String, Object> cfg = configure.readCfg(commandLine);
         return cfg;
     }
 
-    public static StreamExecutionEnvironment createStreamExecutionEnvironment(JobInfo jobInfo) {
-        if (jobInfo.isEnableLocalWeb()) {
+    public static StreamExecutionEnvironment createStreamExecutionEnvironment(JobInfo jobInfo, CommandLine commandLine) {
+        String env = DefaultCli.getOption(commandLine, DefaultCli.env, "qa");
+        if (jobInfo.isEnableLocalWeb() && env.equals("qa")) {
             Configuration configuration = new Configuration();
             configuration.setInteger(RestOptions.PORT, jobInfo.getWebPort());
             return StreamExecutionEnvironment.createLocalEnvironmentWithWebUI(configuration);
@@ -100,16 +101,23 @@ public class SimpleStartSetUp {
     public static void configurationEnvironment(StreamExecutionEnvironment env, JobInfo jobCfg) {
         configurationCheckpoint(env, jobCfg);
         configurationRestartStrategy(env, jobCfg);
+        configurationParallelism(env, jobCfg);
+    }
+
+    public static void configurationParallelism(StreamExecutionEnvironment env, JobInfo info) {
+        Optional.ofNullable(info.getParallelism()).ifPresent(v -> env.setParallelism(v));
+        Optional.ofNullable(info.getMaxParallelism()).ifPresent(v -> env.setMaxParallelism(v));
     }
 
     public static void configurationCheckpoint(StreamExecutionEnvironment env, JobInfo jobCfg) {
         CheckpointInfo cp = jobCfg.getCheckpoint();
         if (cp.getEnable()) {
-            Optional.ofNullable(cp.getTime()).ifPresent(v -> env.enableCheckpointing(v));
             Optional.ofNullable(cp.getInterval()).ifPresent(v -> env.getCheckpointConfig().setCheckpointInterval(v));
+            Optional.ofNullable(cp.getBetweenInterval()).ifPresent(v -> env.getCheckpointConfig().setMinPauseBetweenCheckpoints(v));
             Optional.ofNullable(cp.getTimeout()).ifPresent(v -> env.getCheckpointConfig().setCheckpointTimeout(v));
             Optional.ofNullable(cp.getConcurrent()).ifPresent(v -> env.getCheckpointConfig().setMaxConcurrentCheckpoints(v));
             Optional.ofNullable(cp.getCleanup()).ifPresent(v -> env.getCheckpointConfig().setExternalizedCheckpointCleanup(v));
+            Optional.ofNullable(cp.getCheckpointingMode()).ifPresent(v -> env.getCheckpointConfig().setCheckpointingMode(v));
         }
     }
 

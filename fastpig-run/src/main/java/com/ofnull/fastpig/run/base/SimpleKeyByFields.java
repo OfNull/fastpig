@@ -30,6 +30,9 @@ public class SimpleKeyByFields implements KeySelector<Map<String, Object>, Strin
 
     public SimpleKeyByFields(boolean jsonPathSupported, String[] fields) {
         this.jsonPathSupported = jsonPathSupported;
+        if(fields == null){
+            fields = new String[0];
+        }
         this.fields = fields;
     }
 

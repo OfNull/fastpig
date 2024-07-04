@@ -110,7 +110,6 @@ public class ElasticsearchBulkLoader extends BaseBulkLoader<ElasticsearchBulkLoa
         }
         BulkRequest bulkRequest = new BulkRequest();
         bulkRequest.add(dataList.toArray(new DocWriteRequest[0]));
-        bulkRequest.add(dataList.toArray(new DocWriteRequest[0]));
         BulkResponse bulkResponse = highLevelClient.bulk(bulkRequest, RequestOptions.DEFAULT);
         this.handleBulkFailures(bulkResponse);
 
