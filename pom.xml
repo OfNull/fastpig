@@ -19,8 +19,8 @@
         <module>fastpig-connectors/fastpig-connector-kafka</module>
         <module>fastpig-blocks</module>
         <module>fastpig-connectors/fastpig-connector-elasticsearch</module>
-        <module>fastpig-connectors/fastpig-connector-mysql</module>
         <module>fastpig-dyncomp</module>
+        <module>fastpig-connectors/fastpig-connector-jdbc</module>
     </modules>
 
 
@@ -42,6 +42,8 @@
         <guava.version>28.2-jre</guava.version>
         <commons-collections.version>3.2.2</commons-collections.version>
         <aviator.version>5.3.3</aviator.version>
+        <flink-connector-mysql-cdc.version>2.4.2</flink-connector-mysql-cdc.version>
+        <druid.version>1.2.4</druid.version>
     </properties>
 
     <dependencyManagement>
@@ -107,6 +109,20 @@
                 <version>${mysql.version}</version>
             </dependency>
 
+
+            <dependency>
+                <groupId>com.ververica</groupId>
+                <artifactId>flink-connector-mysql-cdc</artifactId>
+                <version>${flink-connector-mysql-cdc.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.hibernate.validator</groupId>
                 <artifactId>hibernate-validator</artifactId>
@@ -129,6 +145,12 @@
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-http</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-db</artifactId>
                 <version>${hutool.version}</version>
             </dependency>
 

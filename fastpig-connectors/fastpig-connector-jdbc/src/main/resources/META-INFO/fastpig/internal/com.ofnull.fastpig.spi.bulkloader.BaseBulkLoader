@@ -1,0 +1,1 @@
+jdbc=com.ofnull.fastpig.connector.jdbc.bulkloader.MysqlBulkLoader
